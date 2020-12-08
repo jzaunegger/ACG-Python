@@ -18,6 +18,45 @@ from acgPallettes import *
     - name of the color pallete
     ===================================================================================
 '''
+def checkInputPaths(parentFolder, childFolder):
+
+    tempName = os.path.join(parentFolder, childFolder)
+
+    # Check if the output folder exists
+    if(os.path.exists(tempName)):
+        print("The given dataset name is already taken.")
+        print("Would you like to overwrite it? Y or N")
+        print("Enter Y for yes or N for no")
+        answer = input()
+
+        # Remove Files
+        if(answer == "Y" or answer == 'y'):
+            for root, dirs, files in  os.walk(tempName):
+                for file in files:
+                    os.remove(os.path.join(tempName, file))
+
+        # Exit the program
+        else:
+            print("Exiting")
+            sys.exit()
+
+    # Account for the output folder not existing yet
+    else:
+
+        # Create the folder for the dataset
+        if(os.path.exists(parentFolder)):
+            outParentFolder = os.path.join(os.getcwd(), parentFolder)
+            outSubfolder = os.path.join(outParentFolder, childFolder)
+            os.mkdir(outSubfolder)
+
+        # Create the parent folder and the subfolder for the dataset
+        else:
+            outParentFolder = os.path.join(os.getcwd(), parentFolder)
+            outSubfolder = os.path.join(outParentFolder, childFolder)
+            os.mkdir(outParentFolder)
+            os.mkdir(outSubfolder)
+
+
 def inputParameters():
     inputs = []
 
@@ -65,50 +104,13 @@ def inputParameters():
     # Input for the dataset name
     print("What is the name of this set: ")
     datasetName = input()
-    
-    tempName = os.path.join(outputPath, datasetName)
 
-    # Check if the output folder exists
-    if(os.path.exists(tempName)):
-        print("The given dataset name is already taken.")
-        print("Would you like to overwrite it? Y or N")
-        answer = input()
+    # Check the inputs paths, and append them to the data
+    checkInputPaths(outputPath, datasetName)
+    inputs.append(outputPath)
+    inputs.append(datasetName)
 
-        # Remove Files
-        if(answer == "Y" or answer == 'y'):
-            for root, dirs, files in  os.walk(tempName):
-                for file in files:
-                    os.remove(os.path.join(tempName, file))
-
-            inputs.append(outputPath)
-            inputs.append(datasetName)
-
-        # Exit the program
-        else:
-            print("Exiting")
-            sys.exit()
-
-    # Account for the output folder not existing yet
-    else:
-
-        # Create the folder for the dataset
-        if(os.path.exists(outputPath)):
-            outParentFolder = os.path.join(os.getcwd(), outputPath)
-            outSubfolder = os.path.join(outParentFolder, datasetName)
-            os.mkdir(outSubfolder)
-
-            inputs.append(outputPath)
-            inputs.append(datasetName)
-
-        # Create the parent folder and the subfolder for the dataset
-        else:
-            outParentFolder = os.path.join(os.getcwd(), outputPath)
-            outSubfolder = os.path.join(outParentFolder, datasetName)
-            os.mkdir(outParentFolder)
-            os.mkdir(outSubfolder)
-            inputs.append(outputPath)
-            inputs.append(datasetName)
-
+    # Read the name of the pallette
     pallette = input("Please enter the name of the pallette you would like to use:")
     inputs.append(pallette)
 
@@ -117,14 +119,33 @@ def inputParameters():
 # =====================================================================================
 def main():
 
+    inputs = []
+    print(sys.argv)
+    print(len(sys.argv))
+    if(len(sys.argv) != 8):
+        inputs = inputParameters()
+
+    else:
+        checkInputPaths(sys.argv[5], sys.argv[6])
+        inputs = [
+            int(sys.argv[1]),
+            int(sys.argv[2]),
+            int(sys.argv[3]),
+            10,
+            int(int(sys.argv[2]) /2),
+            int(sys.argv[4]),
+            sys.argv[5],
+            sys.argv[6],
+            sys.argv[7]
+        ]
+
+        print(type(sys.argv[6]))
+    
+
     # Read in the input parameters and get a color pallete
-    inputs = inputParameters()
     pallette = getPallette(inputs[8])
 
-    '''
-        inputs[0] - # images
-        inputs[1] - img width
-        inputs[2] - img height
+    '''childFolder
         inputs[3] - min size
         inputs[4] - max size
         inputs[5] - # layers
@@ -132,6 +153,8 @@ def main():
         inputs[7] - dataset name
         inputs[8] - color pallete name
     '''
+
+    print(inputs)
 
     # Main Generation Loop
     out1 = os.path.join(os.getcwd(), inputs[6])
