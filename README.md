@@ -32,7 +32,7 @@ Instead of using the prompt you can also feed in all necessary parameters when y
 ```
 
 ## Dependecies
-* PyGrahics - A simple and lightweight graphics module for Python3. This module allows users to create window objects, and use several built-in objects to display simple graphics in the window. The default features allow you to draw polygons, circles, lines, texts, and rectangles on the screen. This module can be found at [PyGraphics](https://mcsp.wartburg.edu/zelle/python/)
+* PyGraphics - A simple and lightweight graphics module for Python3. This module allows users to create window objects, and use several built-in objects to display simple graphics in the window. The default features allow you to draw polygons, circles, lines, texts, and rectangles on the screen. This module can be found at [PyGraphics](https://mcsp.wartburg.edu/zelle/python/)
 
 ## License
-Please feel free to use and build upon this project any-way you see fit. Please just give credit to where it is to, if you found this project helpful, please link it in something you build with it. Please also give credit to Mr. Zelle, for developing the Python Graphics module, for without whom this project wouldn't exist.
+Please feel free to use and build upon this project any-way you see fit. Please just give credit to where it is to, if you found this project helpful, please link it in something you build with it. Please also give credit to Mr. Zelle, for developing the Python Graphics module, for without whom this project wouldn't exist. All of the fonts used in this application are believed to have a open license, if you are the creator of one of these fonts, please let me know and it will be removed.
