@@ -11,6 +11,7 @@
 ########################################################################
 import math, sys, os
 from graphics import *
+from PIL import  Image, ImageDraw
 
 # Class to create a NGON (N-Sided Polygon)
 ########################################################################

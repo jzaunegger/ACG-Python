@@ -1,0 +1,102 @@
+{
+    "palletes": [
+        {
+            "default": {
+                "background-color": "#000000",
+                "secondary-colors": [ "#555555", "#999999", "#CCCCCC", "#FFFFFF" ]
+            }
+        },
+
+        {
+            "nebula": {
+                "background-color": "#0B1726",
+                "secondary-colors": [ "#262DA6", "#2932D9", "#392359", "#1AA3D9" ]
+            }
+        },
+
+        {
+            "nebula-2": {
+                "background-color": "#191726",
+                "secondary-colors": [ "#B155D9", "#F26B83", "#91F2E9", "#F2A999" ]
+            }
+        },
+
+        {
+            "fire": {
+                "background-color": "#260101",
+                "secondary-colors": [ "#A61103", "#D93D04", "#F28705", "#F2CB05" ]
+            }
+        },
+
+        {
+            "smoke": {
+                "background-color": "#0D0D0D",
+                "secondary-colors": [ "#595959", "#8C8C8C", "#BFBFBF", "#F2F2F2" ]
+            }
+        },
+
+        {
+            "ice": {
+                "background-color": "#044D8C",
+                "secondary-colors": [ "#0568A6", "#398CBF", "#50A0BF", "#96C6D9" ]
+            }
+        },
+
+        {
+            "lightning": {
+                "background-color": "#151B40",
+                "secondary-colors": [ "#162059", "#27368C", "#5A69BF", "#8995D9" ]
+            }
+        },
+
+        {
+            "earth": {
+                "background-color": "#7F5535",
+                "secondary-colors": [ "#7F6B5B", "#CC8955", "#FFAB6A", "#FFD6B6" ]
+            }
+        },
+
+        {
+            "plant": {
+                "background-color": "#000D0C",
+                "secondary-colors": [ "#012619", "#014023", "#22734D", "#2B8C44" ]
+            }
+        },
+
+        { 
+            "desert": {
+                "background-color": "#593825",
+                "secondary-colors": [ "#A67041", "#D97E4A", "#F2A057", "#F2BF91" ]
+            }
+        },
+
+
+        {
+            "beach": {
+            "background-color": "#5BC2D9",
+            "secondary-colors": [ "#66CDD9", "#A7E4F2", "#D9BBA0", "#F2D5BB" ]
+            }
+        },
+
+        {
+            "tundra": {
+                "background-color": "#6D86A6",
+                "secondary-colors": [ "#B0C1D9", "#96B3D9", "#587AA6", "#D8E6F2" ]
+            }
+        },
+
+        {
+            "ocean": {
+                "background-color": "#011826",
+                "secondary-colors": [ "#042940", "#3F6F8C", "#EBEFF2", "#88B0BF" ]
+            }
+        },
+
+        {
+            "space": {
+                "background-color": "#0D0D0D",
+                "secondary-colors": [ "#121926", "#2E4159", "#777E8C", "#5A37A6" ]
+            }
+        }
+    ]
+}
