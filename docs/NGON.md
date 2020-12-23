@@ -50,10 +50,7 @@
   * The number of degrees to rotate the NGON.
   
 ## Usage
-    ```python 
-        # Draw a NGON
-        layer1 = NGON((500, 500), 250, 64, (0, 0, 0, 0), (255, 255, 255, 255), 2, 0) 
-    ```
-
-## Examples
-    Image example goes here.
+```
+ # Draw a NGON
+ layer1 = NGON((500, 500), 250, 64, (0, 0, 0, 0), (255, 255, 255, 255), 2, 0) 
+```
