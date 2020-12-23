@@ -1,56 +1,36 @@
-'''
-from PIL import Image, ImageFont, ImageDraw
-import os
-
-font_size = 50
-center_point = (250, 250)
-radius = 100
-numSides = 32
-text_color = (255, 255, 255, 255)
-points = []
-
-#font_path = os.path.join(os.getcwd(), os.path.join('fonts', os.path.join('Fictional-Languages', 'Atlantean.ttf')))
-#if(os.path.exists(font_path)):
-#    print("Font loaded.")
-#    loaded_font = ImageFont.truetype(font_path, font_size)
-#else:
-loaded_font = ImageFont.load_default()
-
-
-new_image = Image.new('RGBA', (font_size*2, font_size*2), color=(0, 0, 0, 0))
-d = ImageDraw.Draw(new_image)
-d.text((250, 250), "TESasldfjalsdjf", font=loaded_font, fill=text_color)
-#new_image.rotate(45)
-new_image.save('Test.png')
-new_image.show()
-
-'''
-
-
 from PIL import Image, ImageDraw, ImageFont
-import os, random
+import os, random, math
+
+config = {
+    'font-size': 30,
+    'num-chars': 32,
+    'radius': 200,
+    'img-size': (500, 500),
+    'font-path': os.path.join(os.getcwd(), 'fonts', 'Misc-Languages', 'Lovecraft.ttf'),
+    'bg-color': (0, 0, 0, 255),
+    'text-color': (255, 255, 255, 255)
+}
 
 def getRandomChar():
     return chr(random.randint(97, 122))
 
+def drawTextRing2(config):
+    base_image = Image.new('RGBA', (config['img-size'][0], config['img-size'][1]), color=config['bg-color'])
+    base_draw = ImageDraw.Draw(base_image)
+    img_font = ImageFont.truetype(config['font-path'], config['font-size'])
 
-font_size = 50
-num_chars = 10
-font_path = os.path.join(os.getcwd(), 'fonts', 'Magic-Languages', 'Enochian.ttf')
-img_font = ImageFont.truetype(font_path, font_size)
+    x, y, currentAngle = 0, 0, 0
+    centerX = config['img-size'][0] / 2
+    centerY = config['img-size'][1] / 2
 
-x_off = 0
-base_image = Image.new('RGBA', (font_size * num_chars, 300), color=(0, 0, 0, 255))
+    for i in range(0, config['num-chars']):
+        currentAngle = math.pi * 2 * i / config['num-chars']
+        x = int(centerX + config['radius'] * math.cos(currentAngle))
+        y = int(centerX + config['radius'] * math.sin(currentAngle))
 
-for i in range(0, num_chars):
-    img = Image.new('RGBA', (font_size+10, font_size+10), color = (0, 0, 0, 0))
+        char = getRandomChar()
+        base_draw.text((x, y), char, font=img_font, fill=config['text-color'], anchor='ms', align='center')
         
-    d = ImageDraw.Draw(img)
-    char = getRandomChar()
-    
-    d.text((0, 0), char, font=img_font, fill=(255,0,0, 255), align="center")
-    img = img.rotate(random.randint(0, 0))
-    base_image.paste(img, (x_off, 10))
-    x_off += font_size
-     
-base_image.save('test.png')
+    base_image.save('ring2.png')
+
+drawTextRing2(config)
