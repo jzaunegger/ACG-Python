@@ -4,35 +4,27 @@ Home for the Magic Circle Generator repository. This repository is a series of P
 If you would like to learn more about how this project works, please read the documentation file listed [here](https://github.com/jzaunegger).
 
 ## Usage
-To use the scripts I have developed download or clone this repository, then navigate inside the PyGraphics folder. Then use the following commands, to run the program. After running the command you will need to use the prompts and provide the necessary details to generate the images.
+To use the scripts I have developed you will need to complete several steps. First you will need to clone the repository, you can download it directly or clone it using git. After cloning the repository, navigate into the ACG-Python folder. Then create a virtual environment and activate it. Once activated you can install the dependencies and start generating images. Just remember to exit the virtual environment when you are done.
 
+
+create and install the dependencies to a virtual environment. After cloning this repository, run the command:
 ```bash
-    # Python Verison 2
-    python Generate-Samples.py
-
-    # Python Version 3
-    python3 Generate-Samples.py
-```
-
-Instead of using the prompt you can also feed in all necessary parameters when you run the program. The parameters and example usuage is shown below. Please note that if you use this method and the output subfolder already exists, the program will automatically delete any .png images in the folder by default.
-
-* Parameters:
-  * numSamples - The number of images to generate
-  * imgWidth - The width of each image in pixels
-  * imgHeight - The height of each image in pixels
-  * numLayers - The number of layers in each image
-  * baseFolder - The parent output folder
-  * subFolder - The child output folder
-  * colorScheme - The color scheme for the image
-
-
-```bash
-    # Alternate Python3 Example
-    python3 Generate-Samples.py numSamples imgWidth imgHeight numLayers baseFolder subFolder colorScheme
+    # Clone the repository
+    git clone https://github.com/jzaunegger/ACG-Python
+    cd ACG-Python
+    
+    # Create the virtual envivornment
+    python3 -r venv /venv
+    
+    # Activate the virtual environment
+    source venv/bin/activate
+    
+    # Install the dependencies from the requirements
+    pip3 -r install requirements.txt
+    
+    # Deactivate the virtual environment
+    deactivate
 ```
 
 ## Dependecies
-* PyGraphics - A simple and lightweight graphics module for Python3. This module allows users to create window objects, and use several built-in objects to display simple graphics in the window. The default features allow you to draw polygons, circles, lines, texts, and rectangles on the screen. This module can be found at [PyGraphics](https://mcsp.wartburg.edu/zelle/python/)
-
-## License
-Please feel free to use and build upon this project any-way you see fit. Please just give credit to where it is to, if you found this project helpful, please link it in something you build with it. Please also give credit to Mr. Zelle, for developing the Python Graphics module, for without whom this project wouldn't exist. All of the fonts used in this application are believed to have a open license, if you are the creator of one of these fonts, please let me know and it will be removed.
+* Pillow 
