@@ -2,7 +2,20 @@
 Home for the Circle Generator repository. This repository is a series of Python3 scripts and functions that use the Pillow module to generate samples of magic or alchemic circles, as well as many other magic-circle like patterns. This is done by generating series of random numbers with pre-defined drawing patterns to generate new and unique images each generation.
 
 There are more example images that can be viewed in the sources listed below.
-    * 
+
+
+These generated circles may also contain various different symbols and letters from the real world, and using special fonts. Characters are supported from the following alphabets.
+* Latin  
+* Cyrillic 
+* Greek
+* Coptic
+* Arabic
+* Devangari
+* Thai
+* Runic
+* Hiragana
+* Katakana
+* Hangul
     
 There is also documentation if you would like to using the drawing components in your own projects. Please see the [Documentation](https://github.com/jzaunegger/ACG-Python/tree/master/docs)
 
