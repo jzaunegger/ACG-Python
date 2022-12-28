@@ -73,8 +73,8 @@
 
         {
             "beach": {
-            "background-color": "#5BC2D9",
-            "secondary-colors": [ "#66CDD9", "#A7E4F2", "#D9BBA0", "#F2D5BB" ]
+                "background-color": "#5BC2D9",
+                "secondary-colors": [ "#66CDD9", "#A7E4F2", "#D9BBA0", "#F2D5BB" ]
             }
         },
 

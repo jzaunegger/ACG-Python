@@ -41,6 +41,11 @@ def getDistance(point1, point2):
     dist = math.sqrt(temp1 + temp2)
     return dist
 
+def getCenterOfTwoPoint(point1, point2):
+    cx = (point1[0] + point2[0]) / 2
+    cy = (point1[1] + point2[1]) / 2
+    return [cx, cy]
+
 
 # Takes a path to a ttf file and the font size, returns a PIL Font
 ###############################################################################################################
@@ -79,6 +84,8 @@ class Circle:
     def saveImage(self):
         for layer in self.layers:
             layer_image = layer.drawLayer()
+            if hasattr(layer, 'layer_rotation'):
+                layer_image = layer_image.rotate(layer.layer_rotation)
             self.image.paste(layer_image, (0,0), layer_image)
         
         self.image.save(self.filename + ".png", 'PNG')
@@ -90,7 +97,7 @@ class Circle:
 # Class to create a N-Sided Polygon, and draw it 
 ###############################################################################################################
 class NGON:
-    def __init__(self, img_size, pos, diameter, num_sides, bg_color, fg_color, line_width, rotation, filled ):
+    def __init__(self, img_size, pos, diameter, num_sides, bg_color, fg_color, line_width, rotation, filled):
         self.img_size = img_size
         self.pos = pos
         self.center_point = getCenterPoint(img_size)
@@ -168,6 +175,70 @@ class LineRing:
         self.current_layer.paste(ngon2_img, (0,0), ngon2_img)
 
         for line_points in self.points:
+            current_draw.line(line_points, fill=self.fg_color, width=self.line_width, joint='curve')
+
+        return self.current_layer
+
+
+class Mandala:
+    def __init__(self, img_size, diameter, burst_height, num_points, line_width, fg_color, bg_color, offset, rotation):
+        self.img_size = img_size
+        self.center_point = getCenterPoint(self.img_size)
+        self.diameter = diameter
+        self.radius = int(self.diameter/2)
+        self.burst_height = burst_height
+        self.num_points = num_points
+        self.line_width = line_width
+        self.fg_color = fg_color
+        self.bg_color = bg_color
+        self.offset = offset
+        self.layer_rotation = rotation
+
+        self.current_layer = Image.new('RGBA', self.img_size, color=self.bg_color)
+
+    def drawCurve(self, start_point, end_point):
+
+        # Get the center of the two points, its distance from the center 
+        # of the layer
+        center = getCenterOfTwoPoint(start_point, end_point)
+        dist = getDistance(self.center_point, center)
+
+        curve_x = center[0] + (self.offset / dist) * (center[0] - self.center_point[0])
+        curve_y = center[1] + (self.offset / dist) * (center[1] - self.center_point[1])
+
+        current_points = []
+
+        for i in np.arange(0.0, 1.0, 0.01):
+            x = (1-i) * (1-i) * start_point[0] + 2 * (1-i) * i * curve_x + i * i * end_point[0]
+            y = (1-i) * (1-i) * start_point[1] + 2 * (1-i) * i * curve_y + i * i * end_point[1]
+            current_points.append((x, y))
+        return current_points
+
+
+    def drawLayer(self):
+        x, y, angle = 0, 0, 0
+        self.points = []
+
+        current_draw = ImageDraw.Draw(self.current_layer)
+
+        # Find the locations for the petal base points
+        for i in range(self.num_points):
+            angle = math.pi * i * 2 / self.num_points
+            if i % 2 == 0:
+                x = int( self.center_point[0] + self.radius * math.cos(angle))
+                y = int( self.center_point[1] + self.radius * math.sin(angle))
+            else:
+                x = int( self.center_point[0] + (self.radius + self.burst_height) * math.cos(angle))
+                y = int( self.center_point[1] + (self.radius + self.burst_height) * math.sin(angle))
+            self.points.append((x, y))
+
+        for i in range(len(self.points)):
+            if i == len(self.points)-1:
+                line_points = self.drawCurve(self.points[i], self.points[0])
+            else:
+                line_points = self.drawCurve(self.points[i], self.points[i+1])
+            
+            
             current_draw.line(line_points, fill=self.fg_color, width=self.line_width, joint='curve')
 
         return self.current_layer

@@ -1,0 +1,21 @@
+{
+    "generation-parameters": {
+        "image-width": 500,
+        "image-height": 500,
+        "num-samples": 10,
+        "num-layers": 3,
+        "color-pallete": "space",
+        "language": "greek",
+        "output-folder": "Test-Samples",
+        "generation-name": "Test-Run",
+
+        "config-directory": "",
+        "language-config-file": "",
+        "pallette-config-file": ""
+    },
+
+    "layer-parameters":{
+        "base-layers": [],
+        "outer-layers": []
+    }
+}

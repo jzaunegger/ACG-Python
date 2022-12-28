@@ -12,12 +12,20 @@ config = {
     'generation-name': 'Run-1'
 }
 
+'''
+    Function to get the list of available color palletes
+    from the json data in the config folder. 
+'''
 def getPalettes():
     file_path = os.path.join(os.getcwd(), 'config', 'palletes.json')
     with open(file_path) as json_file:
         data = json.load(json_file)
     return data
 
+
+'''
+    Load the color palletes from the config dat
+'''
 def loadColorPalette(config):
     pallete_data = getPalettes()
     pallete_items = pallete_data['palletes']
@@ -30,6 +38,11 @@ def loadColorPalette(config):
 
     return pallete_data['palletes'][0]
 
+
+'''
+    Function that removes any sub-files and directories
+    from a given path.
+'''
 def clearFolder(folder_path):
     sub_files = os.listdir(folder_path)
     for sub_file in sub_files:
@@ -39,6 +52,10 @@ def clearFolder(folder_path):
         elif os.path.isdir(sub_file):
             os.rmdir(folder_path)
 
+
+'''
+    Function that creates or clears a given folder.
+'''
 def checkOutput(config):
     out_folder = os.path.join(os.getcwd(), config['output-folder'])
     if os.path.exists(out_folder) == False:
@@ -58,12 +75,18 @@ def checkOutput(config):
 
     return sub_folder
 
+'''
+    Function that reads JSON data from a file.
+'''
 def loadFromJSON(file_path):
     with open(file_path) as json_file:
         data = json.load(json_file)
     return data
 
-
+'''
+    Function to procedurally generate image parameters, 
+    configuration parameters and color palletes.
+'''
 def GenerateParameters(config, isBase, pallete):
     param_bounds_path = os.path.join(os.getcwd(), 'config', 'gen-param-bounds.json')
     param_bounds = loadFromJSON(param_bounds_path)
@@ -108,7 +131,9 @@ def GenerateParameters(config, isBase, pallete):
 
     return params
 
-
+'''
+    Function to generate parameters for a given layer.
+'''
 def GenerateLayer(params, current_dia):
 
     # Generate Bases
@@ -138,6 +163,9 @@ def GenerateLayer(params, current_dia):
     else:
         pass
 
+'''
+    Function to automatically generate image samples
+'''
 def GenerateSamples(config):
     output_path = checkOutput(config)
     pal = loadColorPalette(config)
